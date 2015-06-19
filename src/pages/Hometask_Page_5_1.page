@@ -1,0 +1,16 @@
+<apex:page Controller="hometask_page_5_class" tabstyle="Position__c">
+    <apex:form >
+        <apex:pageBlock title="Enter a Functional_Area"> <!-- title="List Values: {!p.Job_Level__c}"> --> 
+                <apex:inputField value="{!p.Functional_Area__c}"/>
+                <apex:commandButton action="{!dosubmit}" value="submit"/>
+        </apex:pageblock>
+        <apex:pageblock >   
+            <apex:pageBlockSection title="Position Details" columns="1">
+                <apex:repeat value="{!p2}" >
+                <apex:outputText value="{!p2}" /><br/>
+                </apex:repeat>  
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

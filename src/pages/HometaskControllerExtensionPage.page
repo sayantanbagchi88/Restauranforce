@@ -1,0 +1,7 @@
+<apex:page standardController="Book__c" extensions="hometaskControllerExtension">
+
+<apex:form >
+    <apex:inputField value="{!b.name}"/> 
+    <apex:commandButton value="Save" action="{!dosave}" />
+    </apex:form>
+</apex:page>

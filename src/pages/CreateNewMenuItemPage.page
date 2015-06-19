@@ -1,0 +1,17 @@
+<apex:page standardController="Menu_Item__c">
+	<apex:form >
+		<apex:pageBlock title="Create New Menu Item">
+			<apex:pageBlockSection title="Menu Item Details" columns="3">
+				<apex:inputField value="{!Menu_Item__c.Item_Name__c}" /> 
+				<apex:inputField value="{!Menu_Item__c.Item_Price__c}" /> 
+				<apex:inputField value="{!Menu_Item__c.Restaurant_Name__c}"/> 
+			</apex:pageBlockSection>
+			
+			<apex:pageBlockButtons style="align:middle;">
+				<apex:commandButton action="{!save}" value="save"/>
+				<apex:commandButton action="{!cancel}" value="cancel"/>
+			
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+		</apex:form>
+</apex:page>

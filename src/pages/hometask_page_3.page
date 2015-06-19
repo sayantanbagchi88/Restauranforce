@@ -1,0 +1,35 @@
+<apex:page controller="Hometask_page3_controller" tabStyle="Book__c" >
+	<apex:form >		
+		<apex:pageBlock title="Create Book" mode="edit">
+			<apex:pageBlockSection title="Book Details" columns="1">
+				<apex:inputField value="{!book.Name}" /> 
+				<apex:inputField value="{!book.Price__c}" />  
+				<apex:commandButton action="{!save}" value="create the book"/>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		
+		<apex:pageBlock title="Delete Book" mode="edit">
+			<apex:pageBlockSection title="Book Details" columns="1">
+				<apex:inputField value="{!book.Name}" /> 
+				<apex:inputField value="{!book.Price__c}" />  
+				<apex:commandButton action="{!deleteT}" value="Delete the book"/>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		
+		
+	</apex:form>
+<!-- 	
+<apex:pageBlock mode="edit">
+<apex:pageMessages/>
+<apex:pageBlockSection>
+<apex:inputField value="{!Account.name}"/>
+<apex:inputField value="{!Account.phone}"/>
+<apex:inputField value="{!Account.industry}"/>
+</apex:pageBlockSection>
+<apex:pageBlockButtons location="bottom">
+<apex:commandButton value="Save" action="{!save}"/>
+</apex:pageBlockButtons>
+</apex:pageBlock>
+-->
+
+</apex:page>

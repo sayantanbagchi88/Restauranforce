@@ -1,0 +1,175 @@
+<apex:page standardController="Account" renderAs="pdf">
+ <head>
+ <style>
+    @media print {
+        .noprint {display:none;}
+    }
+    body {
+        font-family: SansSerif;
+    }
+    #detailsTable{ border: 1px solid #7E7E7E; border-collapse:collapse;}
+    #detailsTable td, #detailsTable th {
+        border-left: 1px solid #7E7E7E;
+        border-top: 1px solid #7E7E7E;
+        border-collapse: collapse;
+    }
+    .endCol {
+        border-right: 1px solid #7E7E7E;
+    }
+    .endRow {
+        border-bottom: 1px solid #7E7E7E;
+    }
+     
+
+    .header_left_last {
+        text-align: left;
+        position: running(header_left);
+        background:red;
+    }
+    .footer_left_last {
+        text-align: left;
+            position: running(footer_left);
+        background:red;
+    }
+    @page{ 
+        size: A4;   
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left:0px;
+        margin-right:0px;
+        
+        @top-left {
+            content: element(header_left);
+            margin-left:0px;
+        }
+        
+        @top-center {
+            content: element(header_center);
+            padding-top:0px;
+            margin-top:0px;
+            border-spacing:0px;
+            border-top:0px;
+        }
+        
+        @top-right {
+            content: element(header_right);
+        }
+        
+        @bottom-left {
+            content: element(footer_left);
+        }
+        
+        @bottom-center {
+            content: element(footer_center);
+        }
+        
+        @bottom-right {
+            content: element(footer_right);
+        }
+    }
+    
+    .header_left {
+        text-align: left;
+            position: running(header_left);
+        
+    }
+    
+    .header_center{
+        text-align: center;
+        position: running(header_center);
+        padding-left:0px;
+        padding-top:0px;
+        
+    }
+    
+    .header_right {
+        text-align: right;
+        position: running(header_right);
+        
+    }
+    
+    .footer_left {
+        text-align: left;
+        position: running(footer_left);
+    }
+    
+    .footer_center {
+        text-align: center;
+        position: running(footer_center);
+    }
+    
+    .footer_right {
+        text-align: right;
+        position: running(footer_right);
+    }
+    
+    .pageNumber:before{
+        content: counter(page); 
+    }
+    
+    .pageCount:before {
+        text-align:right;font-size:9pt; line-height: 14pt; color:#AFB0C4; margin-left: 48px;
+        content: counter(page);  
+    }
+    
+    body {
+        margin: 0px;
+    }
+    
+    .tbl {-fs-table-paginate: paginate;border-style: solid;border-color:#FFFFFF;border-top:0px;border-top-width:20px;}
+   
+    #b1 {
+       border-right: 1px solid black;
+       border-bottom: 1px solid black;
+       border-left: 1px solid black;
+       border-top: 1px solid black;
+    }
+    .break { page-break-before: always;} 
+     table { page-break-inside:avoid;page-break-after:auto;}
+     tr    { page-break-inside:avoid; page-break-after:auto; }   
+     
+    </style>
+    </head>
+    <body>
+    <c:PDFHeaderFooter type="header" position="center">
+    
+	<div>
+	Commercial In Confidence
+	  		<img src="{!$Resource.Chikpea_Logo_Transparent_Tania}" width='200px' height='50px' mergin-top='1px'/>
+    
+    </div>
+           
+        
+    </c:PDFHeaderFooter>
+    
+    <c:PDFHeaderFooter type="footer" position="center" showPageNumbers="false">
+	  <div>
+	  <p>Please note this is a draft quote and can not be executed, it is for discussion only as pricing may change. Nothing in this draft quote is binding on either party except an obligation of confidentiality.
+			<br></br><b>Address:</b>ChikPea Inc. One Market St. Spear Tower 35th floor San Francisco CA, USA 94105, Phone: - 1-888-342-3828
+			<br></br><b>ChikPea Support Call:</b> 415-261-6050
+			<br></br> <b>ChikPea Support Email:</b> support@chikpea.com
+			</p>
+			</div>
+	</c:PDFHeaderFooter>
+	
+	<div class="content">
+	<p>
+	<center><h1>Service Details</h1></center>
+	<table style="width:100%; border:true" border="1">
+	<tr>
+	    <th><b>Id</b></th>
+	    <th><b>Service Plan</b></th>
+	    <th><b>Quantity</b></th>
+	    <th><b>Rate</b></th>
+	    <th><b>Benchmark Price</b></th>
+	    <th><b>Minimum Price</b></th>
+	    <th><b>Position Premium</b></th>
+	    <th><b>Weekend Premium</b></th>
+	</tr>
+	</table>
+</p>
+</div>
+	
+   <div class="break"></div>
+   </body>
+    </apex:page>

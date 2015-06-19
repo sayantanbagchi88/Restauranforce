@@ -1,0 +1,17 @@
+<apex:page >
+<apex:form >
+   <script type="text/javascript">
+
+    function popupwindow(){
+
+        var newwindow = window.open('/https://c.ap1.visual.force.com/apex/CustomlookupPopupTax','Call Report');
+
+        newwindow.focus();
+
+    }
+
+    </script>
+
+<apex:commandButton action="{!InvokeCallReport}" value="Generate Report" onclick="popupwindow"/>
+</apex:form>
+</apex:page>

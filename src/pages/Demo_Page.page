@@ -1,0 +1,11 @@
+<apex:page standardController="Shipping_Invoice__c"> <!-- Account"> -->
+<!-- Begin Default Content REMOVE THIS -->
+<apex:pageblock title="Congratulations and Welcome {!$User.FirstName}  !!!">
+    <br> This is your new Page </br>
+    <h2> Here is you invoices list</h2>
+    <br> {!Shipping_Invoice__c.Shipping_Invoice_Name__c} </br>
+    <apex:detail subject="{!Shipping_Invoice__c.ownerId}" relatedList="false" title="false"/> 
+
+</apex:pageblock>
+<!-- End Default Content REMOVE THIS -->
+</apex:page>

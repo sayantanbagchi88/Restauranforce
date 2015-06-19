@@ -1,0 +1,77 @@
+<apex:page standardController="Account" renderAs="pdf">
+
+<head>
+	<style type="text/css" media="print">
+
+    @page {
+	    @top-center {
+	        content: element(header);
+		}
+        @bottom-left {
+	        content: element(footer);
+        }
+ 	}
+
+    div.header {
+		padding: 10px;
+        position: running(header);
+   }
+   div.footer {
+	   display: block;
+       padding: 5px;
+       position: running(footer);
+   }
+
+   .pagenumber:before {
+		content: counter(page);
+	}
+
+    .pagecount:before {
+		content: counter(pages);
+	}
+
+    </style>
+</head>
+ <!--  header part information -->
+ 
+ <div class="header">
+	<div>
+	Commercial In Confidence
+	<div style="float:right; margin-top:1px" >
+  		<img src="{!$Resource.Chikpea_Logo_Transparent_Tania}" width='200px' height='50px' mergin-top='1px'/>
+    </div>
+    </div>
+</div>
+
+<!-- Footer part information -->
+<div class="footer">
+	<div>Page <span class="pagenumber"/> of <span class="pagecount"/></div>
+    	<div style="float:bottom; margin-bottom:0px; font-size:16px">
+			<p>Please note this is a draft quote and can not be executed, it is for discussion only as pricing may change. Nothing in this draft quote is binding on either party except an obligation of confidentiality.
+			<br></br><b>Address:</b>ChikPea Inc. One Market St. Spear Tower 35th floor San Francisco CA, USA 94105, Phone: - 1-888-342-3828
+			<br></br><b>ChikPea Support Call:</b> 415-261-6050
+			<br></br> <b>ChikPea Support Email:</b> support@chikpea.com
+			</p>
+		</div>
+   </div>
+ 
+<div class="content">
+	<p>
+	<center><h1>Service Details</h1></center>
+	<table style="width:100%; border:true" border="1">
+	<tr>
+	    <th><b>Id</b></th>
+	    <th><b>Service Plan</b></th>
+	    <th><b>Quantity</b></th>
+	    <th><b>Rate</b></th>
+	    <th><b>Benchmark Price</b></th>
+	    <th><b>Minimum Price</b></th>
+	    <th><b>Position Premium</b></th>
+	    <th><b>Weekend Premium</b></th>
+	</tr>
+	</table>
+</p>
+</div>
+
+    
+</apex:page>

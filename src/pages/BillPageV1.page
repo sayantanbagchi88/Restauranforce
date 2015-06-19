@@ -1,0 +1,84 @@
+<!-- bill page version1 created by Sayantan Bagchi last Modified on 16-02-2015 -->
+
+<apex:page Controller="BillPageV1class" tabStyle="Bill__c" showHeader="true">
+<!-- Begin Default Content REMOVE THIS -->
+<apex:sectionHeader title="Bill Edit"  subtitle="New Bill" />
+
+<apex:form id="BillForm">  
+    <apex:PageBlock id="MasterBillBlock">        
+        <apex:pageBlockSection columns="2" title="Master Bill Details">
+            <apex:inputField label=" Bill Name" value="{!b1.Bill_name__c}" required="true" /> 
+            <apex:inputField label=" Restaurant Name" value="{!b1.Restaurant_Name__c}" required="true"/>
+            <apex:inputField label="Non Taxable and Tips Amount" value="{!b1.Tips__c}" required="false"/>
+        </apex:pageBlockSection>
+      
+       
+    </apex:PageBlock>
+     
+    <apex:outputPanel id="DetailTaxRerender">
+        <apex:pageBlock rendered="{!ISBLANK(b1.Bill_name__c)}">
+         <apex:pageBlockSection id="Detail_Tax_Bill"  title="Detail Tax View" >
+           <apex:pageMessages />
+             <apex:variable var="rowNumber" value="{!0}"/>
+ 				<apex:pageblockSection columns="1">
+ 				  <apex:pageBlockTable title="Taxes" var="Taxes" value="{!t1}"> 
+ 				  <apex:column headerValue="No." style="width:20px; text-align:center;" headerClass="centertext">
+ 					 <apex:outputText value="{0}" style="text-align:center;"> 
+ 					 <apex:param value="{!rowNumber+1}" /> 
+ 				     </apex:outputText>
+                  </apex:column>
+             	  <apex:column headerValue="Tax Name" >
+             		<apex:inputField value="{!t1.Tax_Name__c}" required="true" />
+             	  </apex:column>
+             	  <apex:column headerValue="Tax Percentage" > 
+             		<apex:inputField value="{!t1.Tax_Percentage__c}" required="true" />
+             	  </apex:column>
+             	  </apex:pageBlockTable>
+             	  <apex:commandButton action="{!addTax}" value="Add Tax" rerender="DetailTaxRerender"/>
+             	</apex:pageblockSection>
+         </apex:pageBlockSection>
+         </apex:pageBlock>
+      </apex:outputPanel>
+     <!--  ========================================================    
+         </apex:pageBlockSection>
+         <apex:pageBlockButtons style="align:middle;">
+            <apex:commandButton action="{!addTax}" value="Add Tax" rerender="DetailTaxRerender"/>
+         
+            <apex:commandButton action="{!dosave1}" value="save" reRender="DetailMenuRerender"/>
+            <apex:commandButton action="{!docancel1}" value="cancel"/>
+          </apex:pageBlockButtons>
+          </apex:pageBlock>
+    	</apex:outputPanel>
+    
+           =========================================================
+     -->
+       
+    
+    <apex:outputPanel id="DetailMenuRerender">
+      <apex:pageBlock rendered="{!ISBLANK(b1.Bill_name__c)}">
+         <apex:pageBlockSection id="Detail_Menu_Bill"  title="Detail Menu View" >
+                <apex:inputField label="Bill Number" value="{!b1.Name}"/>
+                <apex:inputField label=" Menu Item Name" value="{!mi1.Item_Name__c}" required="true" /> 
+                <apex:inputField label=" Menu Item Price" value="{!mi1.Item_Price__c}" required="true" /> 
+                <apex:inputField label=" Menu Item Quantity" value="{!dmb1.Quantity__c}" required="true" /> 
+         </apex:pageBlockSection>
+         <apex:pageBlockButtons style="align:middle;">
+                <apex:commandButton action="{!addMenuItem}" value="Add Menu Item" rerender="DetailMenuRerender" />
+        <!-- 
+                <apex:commandButton action="{!dosave2}" value="save" />
+                <apex:commandButton action="{!docancel2}" value="cancel" />
+         -->
+         </apex:pageBlockButtons>
+      </apex:pageBlock>
+    </apex:outputPanel>
+    <apex:pageBlock >       
+    <apex:pageBlockButtons style="align:middle;">
+      <apex:commandButton action="{!dosave}" value="save" reRender="DetailTaxRerender"/>
+      <apex:commandButton action="{!docancel}" value="cancel"/>
+    </apex:pageBlockButtons>
+    </apex:pageBlock>
+  </apex:form>
+
+
+<!-- End Default Content REMOVE THIS -->
+</apex:page>

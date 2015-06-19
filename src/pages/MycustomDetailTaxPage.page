@@ -1,0 +1,55 @@
+<apex:page Controller="MycustomlookupforDetailTax" id="Page" tabstyle="Tax__c">
+
+ <script type="text/javascript"> 
+ function openLookup1(name, id){
+    var url="https://c.ap1.visual.force.com/apex/CustomlookupPopupTax?namefield=Page:myForm:PageBlock:pageblocksection:detailTaxNumber" +  "&idfield=" + id;
+    alert(url);
+    var newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus) 
+       {
+       newWin.focus();
+       }
+ return false;
+ }
+       
+ function closeLookupPopup()
+ {
+    if (null!=newWin)
+    {
+       newWin.close();
+    }  
+ }
+ 
+Page:myForm:PageBlock:pageblocksection
+</script>
+
+<apex:sectionHeader title="Tax Page"  subtitle="Custom Lookup For Tax" />
+
+  <apex:form id="myForm">  
+    <apex:PageBlock id="PageBlock">        
+      <apex:pageBlockSection columns="2" title="Custom Lookup" id="pageblocksection">
+      
+  <!--  <apex:inputField id="Detail_Tax__c" value="{!dt1.Name}"  />       -->
+        <apex:inputField label="Detail Tax Bill Number" value="{!dt1.Bill_Number__c}"  />
+        
+        <apex:inputHidden id="targetNameId" value="{!dt1.Tax__c}"/>
+        <apex:inputText label="Detail Tax Number" id="detailTaxNumber" required="true"/>
+        <a href="#" onclick="openLookup1('{!$Component.detailTaxNumber}', '{!$Component.targetNameId}'); return false" >
+        Click</a>   
+       
+  <!--   <apex:inputField label="Detail Tax Number default" value="{!dt1.Tax__c}"  />      -->
+  
+  
+      </apex:pageBlockSection>
+      
+ <!--   </apex:PageBlock>
+    <apex:pageBlock id="buttonsSaveCancel">
+ -->     <apex:pageBlockButtons style="align:middle;">
+        <apex:commandButton action="{!dosave}" value="save" />
+        <apex:commandButton action="{!docancel}" value="cancel"/>
+      </apex:pageBlockButtons>
+    </apex:PageBlock>
+    
+  </apex:form>
+
+</apex:page>

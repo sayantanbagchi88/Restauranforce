@@ -1,0 +1,16 @@
+<apex:page Controller="hometask_page_5_class" tabstyle="Position__c">
+	<apex:form >
+		<apex:messages />
+		<apex:pageBlock title="Enter a Functional_Area"> <!-- title="List Values: {!p.Job_Level__c}"> --> 
+				<apex:inputField value="{!p.Functional_Area__c}"/>
+				<apex:commandButton action="{!dosubmit}" value="submit"/>
+		</apex:pageblock>
+		<apex:pageblock >
+		<apex:messages />	
+			<apex:pageBlockSection title="Position Details" columns="1">
+				<apex:outputLabel value="{!IF(p.Functional_Area__c == 'Human Resources',p1.Functional_Area__c,p1.Job_Level__c)}"/>
+				
+				</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,13 @@
+<apex:page standardController="Account" extensions="hometask_class_4">
+<apex:form >
+<apex:pageBlock >
+     <apex:inputField label="name" value="{!a.Name}"/> <p/>
+     <apex:inputField label="company site" value="{!a.Site}"/> <p/>
+     <apex:inputField label="Description" value="{!a.Description}"/> <p/>
+     <apex:inputField label="website" value="{!a.Website}"/> <p/>
+</apex:pageBlock>   
+<apex:pageBlock >
+    <apex:commandButton value="Submit" action="{!save}" />
+</apex:pageBlock>
+    </apex:form>
+</apex:page>

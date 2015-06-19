@@ -1,0 +1,90 @@
+<!-- bill page version 2 created by Sayantan Bagchi last Modified on 16-02-2015 -->
+
+<apex:page Controller="BillPagev2class" tabStyle="Bill__c" showHeader="true">
+<!-- Begin Default Content REMOVE THIS -->
+<apex:sectionHeader title="Bill Edit"  subtitle="New Bill" />
+
+ <script type="text/javascript"> 
+ function openLookupForTax(name, id){
+    var url="https://c.ap1.visual.force.com/apex/CustomlookupPopupTax?namefield=Page:myForm:PageBlock:pageblocksection:detailTaxNumber" +  "&idfield=" + id;
+    alert(url);
+    var newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus) 
+       {
+       newWin.focus();
+       }
+ return false;
+ }
+       
+ function closeLookupPopup()
+ {
+    if (null!=newWin)
+    {
+       newWin.close();
+    }  
+ }
+ 
+Page:myForm:PageBlock:pageblocksection
+</script>
+
+<apex:form id="BillForm">  
+    <apex:PageBlock id="MasterBillBlock">        
+        <apex:pageBlockSection columns="2" title="Master Bill Details">
+            <apex:inputField label=" Bill Name" value="{!b1.Bill_name__c}" required="true" /> 
+            <apex:inputField label=" Restaurant Name" value="{!b1.Restaurant_Name__c}" required="true"/>
+        </apex:pageBlockSection>
+        <apex:pageBlockButtons style="align:middle;">
+            <apex:commandButton action="{!dosave}" value="save" reRender="DetailTaxRerender"/>
+            <apex:commandButton action="{!docancel}" value="cancel"/>
+        </apex:pageBlockButtons>
+          
+    </apex:PageBlock>
+     
+    <apex:outputPanel id="DetailTaxRerender">
+        <apex:pageBlock rendered="{!ISBLANK(b1.Bill_name__c)}">
+        	<apex:pageBlockSection id="Detail_Tax_Bill"  title="Detail Tax View" >
+           	<apex:pageMessages />
+           		<apex:variable var="rowNumber" value="{!0}"/>
+ 			 		<apex:pageBlockTable title="Taxes" var="Taxes" value="{!dtb1}" > 
+ 						<apex:column headerValue="No." style="width:20px; text-align:center;" headerClass="centertext">
+ 							<apex:outputText value="{0}" style="text-align:center;"> 
+ 							<apex:param value="{!rowNumber+1}" /> 
+ 				    		</apex:outputText>
+                  		</apex:column>
+             	  		<apex:column headerValue="Tax Name" >
+             				<apex:inputText value="{!dtb1.Tax__c}" required="true" disabled="true" id="DetailTaxNumber"/>
+             	  		</apex:column>
+             	  		<apex:column headerValue="Tax Percentage" > 
+             				<apex:inputText value="{!dtb1.Tax_Percentage__c}" required="true" disabled="true" id="DetailTaxPercentage"/>
+             	  		</apex:column>
+             	  	</apex:pageBlockTable>
+             	<a href="#" onclick="openLookupForTax('{!$Component.DetailTaxNumber}', '{!$Component.DetailTaxPercentage}'); return false" > Click Here</a>
+        	</apex:pageblockSection>
+    	</apex:pageBlock>
+    </apex:outputPanel>
+    
+    
+    <apex:outputPanel id="DetailMenuRerender">
+    	<apex:pageBlock rendered="{!ISBLANK(b1.Bill_name__c)}">
+        	<apex:pageBlockSection id="Detail_Menu_Bill"  title="Detail Menu View" >
+                <apex:inputField label="Bill Number" value="{!b1.Name}"/>
+                <apex:inputField label=" Menu Item Name" value="{!mi1.Item_Name__c}" required="true" /> 
+                <apex:inputField label=" Menu Item Price" value="{!mi1.Item_Price__c}" required="true" /> 
+                <apex:inputField label=" Menu Item Quantity" value="{!dmb1.Quantity__c}" required="true" /> 
+         	</apex:pageBlockSection>
+        	<apex:pageBlockButtons style="align:middle;">
+            	<apex:commandButton action="{!addMenuItem}" value="Add Menu Item" rerender="DetailMenuRerender" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:outputPanel>
+    <apex:pageBlock >       
+    	<apex:pageBlockButtons style="align:middle;">
+      		<apex:commandButton action="{!dosave}" value="save" reRender="DetailTaxRerender"/>
+      		<apex:commandButton action="{!docancel}" value="cancel"/>
+    	</apex:pageBlockButtons>
+    </apex:pageBlock>
+</apex:form>
+
+
+<!-- End Default Content REMOVE THIS -->
+</apex:page>
